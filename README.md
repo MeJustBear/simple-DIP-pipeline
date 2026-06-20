@@ -1,5 +1,7 @@
 # dippipe — simple DIP pipeline
 
+[![Build and Tests](https://github.com/MeJustBear/simple-DIP-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/MeJustBear/simple-DIP-pipeline/actions/workflows/ci.yml)
+
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md) [![Русский](https://img.shields.io/badge/lang-Русский-lightgrey.svg)](README.ru.md)
 
 A small, packaged image signal processing (ISP) pipeline grown out of a set of

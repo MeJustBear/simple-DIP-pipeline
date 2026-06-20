@@ -1,5 +1,7 @@
 # dippipe — simple DIP pipeline
 
+[![Build and Tests](https://github.com/MeJustBear/simple-DIP-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/MeJustBear/simple-DIP-pipeline/actions/workflows/ci.yml)
+
 [![English](https://img.shields.io/badge/lang-English-lightgrey.svg)](README.md) [![Русский](https://img.shields.io/badge/lang-Русский-green.svg)](README.ru.md)
 
 Небольшой упакованный конвейер обработки изображений (ISP), выросший из набора

@@ -1,6 +1,6 @@
 [project]
 name = "dippipe"
-version = "0.4.0"
+version = "0.4.1"
 description = "Simple digital image processing (ISP) pipeline: RAW demosaicing, AWB, tone mapping and filtering."
 authors = [
     { name = "Pavel Fomenko" },
