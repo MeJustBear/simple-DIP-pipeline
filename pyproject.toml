@@ -1,0 +1,34 @@
+[project]
+name = "dippipe"
+version = "0.3.0"
+description = "Simple digital image processing (ISP) pipeline: RAW demosaicing, AWB, tone mapping and filtering."
+authors = [
+    { name = "Pavel Fomenko" },
+]
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = ["numpy>=2.0.2", "scipy>=1.13.1", "matplotlib>=3.9.4", "opencv-python>=4.13.0.92"]
+
+[project.scripts]
+dippipe = "dippipe.cli:main"
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.build]
+# Ship only the package; usage examples under src/usage are docs, not code.
+includes = ["src/dippipe"]
+source-includes = ["src/usage", "tests", "README.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+test = [
+    "pytest>=8.4.2",
+]

@@ -1,0 +1,32 @@
+# Virtual environments
+.pdm_venv/
+.venv/
+__pypackages__/
+
+# PDM
+.pdm-python
+.pdm-build/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Pipeline data and generated artifacts (kept out of the wheel/repo)
+usage_output/
+1Task/
+2Task/
+3Task/
+4Task/
+*.raw
+*.npy
+
+# Keep the sample captures under version control (they are excluded from the
+# wheel/sdist via pyproject's build includes, not via .gitignore).
+!examples/
+!examples/*.raw

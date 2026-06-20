@@ -1,0 +1,67 @@
+name: CI
+
+# Build and test on every push / PR. When a version tag (vX.Y.Z) is pushed,
+# additionally publish a GitHub Release with the built wheel and sdist attached.
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: Build & test (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pdm install -dG test
+
+      - name: Run tests
+        run: pdm run pytest -q
+
+      - name: Build wheel and sdist
+        run: pdm build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist-py${{ matrix.python-version }}
+          path: dist/*
+
+  release:
+    name: Release
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v7
+        with:
+          python-version: "3.12"
+
+      - name: Build wheel and sdist
+        run: pdm build
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
